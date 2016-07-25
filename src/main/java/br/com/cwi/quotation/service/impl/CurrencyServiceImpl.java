@@ -73,7 +73,8 @@ public class CurrencyServiceImpl implements CurrencyService {
 	}
 
 	public BigDecimal calculateTotalTargetCurrency(BigDecimal fromTotalAmount, BigDecimal toQuotationValue) {
-		return fromTotalAmount.divide(toQuotationValue, RoundingMode.CEILING).setScale(2, RoundingMode.CEILING);
+		BigDecimal total = fromTotalAmount.divide(toQuotationValue, RoundingMode.CEILING);
+		return total.setScale(2, RoundingMode.DOWN);
 	}
 
 	public BigDecimal calculateTotalAmountQuotation(BigDecimal fromQuotationValue, BigDecimal value) {

@@ -21,8 +21,8 @@ public class Application {
 		
 		String from = "USD";
 		String to = "EUR";
-		double money = 100.0;
-		String date = "24/07/2016";
+		double money = 100.00;
+		String date = "20/11/2014";
 		
 		app.run(from, to, money, date);
 	}
