@@ -13,8 +13,8 @@ import br.com.cwi.quotation.service.impl.CurrencyServiceImpl;
  */
 public class Application {
 	
-	private FileService fileService = new CsvServiceImpl();
-	private CurrencyService currencyService = new CurrencyServiceImpl(fileService);
+	private FileService fileService;
+	private CurrencyService currencyService;
 	
 	public static void main(String[] args) throws Exception{
 		Application app = new Application();
@@ -28,6 +28,10 @@ public class Application {
 	}
 
 	private void run(String from, String to, double money, String date) {
+		
+		fileService = new CsvServiceImpl();
+		currencyService = new CurrencyServiceImpl(fileService);
+		
 		BigDecimal currencyQuotationValue = currencyService.currencyQuotation(from, to, money, date);
 		System.out.println(currencyQuotationValue);
 	}
