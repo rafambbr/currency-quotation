@@ -13,7 +13,15 @@ import br.com.cwi.quotation.util.Util;
 
 public class CurrencyServiceImpl implements CurrencyService {
 	
-	private FileService fileService = new CsvServiceImpl();
+	private FileService fileService;
+	
+	public CurrencyServiceImpl(){
+		//No-op
+	}
+	
+	public CurrencyServiceImpl(FileService fileService){
+		this.fileService = fileService;
+	}
 	
 	public BigDecimal currencyQuotation(String from, String to, Number value, String quotationDate){
 		

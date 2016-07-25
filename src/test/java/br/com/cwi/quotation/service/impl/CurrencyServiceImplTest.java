@@ -5,14 +5,22 @@ import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import br.com.cwi.quotation.exception.ServiceException;
+import br.com.cwi.quotation.service.FileService;
 import br.com.cwi.quotation.util.Util;
 
 public class CurrencyServiceImplTest {
 	
-	private CurrencyServiceImpl currencyService = new CurrencyServiceImpl();
+	private CurrencyServiceImpl currencyService;
+	
+	@Before
+	public void setup(){
+		FileService fileService = new CsvServiceImpl();
+		currencyService = new CurrencyServiceImpl(fileService);
+	}
 	
 	@Test
 	public void failOnCurrencyQuotationInvalidFrom(){

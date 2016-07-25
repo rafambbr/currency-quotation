@@ -3,6 +3,8 @@ package br.com.cwi.quotation.app;
 import java.math.BigDecimal;
 
 import br.com.cwi.quotation.service.CurrencyService;
+import br.com.cwi.quotation.service.FileService;
+import br.com.cwi.quotation.service.impl.CsvServiceImpl;
 import br.com.cwi.quotation.service.impl.CurrencyServiceImpl;
 
 /**
@@ -11,14 +13,21 @@ import br.com.cwi.quotation.service.impl.CurrencyServiceImpl;
  */
 public class Application {
 	
+	private FileService fileService = new CsvServiceImpl();
+	private CurrencyService currencyService = new CurrencyServiceImpl(fileService);
+	
 	public static void main(String[] args) throws Exception{
+		Application app = new Application();
 		
 		String from = "USD";
 		String to = "EUR";
 		double money = 100.0;
 		String date = "24/07/2016";
 		
-		CurrencyService currencyService = new CurrencyServiceImpl();
+		app.run(from, to, money, date);
+	}
+
+	private void run(String from, String to, double money, String date) {
 		BigDecimal currencyQuotationValue = currencyService.currencyQuotation(from, to, money, date);
 		System.out.println(currencyQuotationValue);
 	}
